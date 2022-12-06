@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "date": "21 Sep, 2020",
+      "name": "Understanding color",
+      "availableTickets": 43
+    },
+    {
+      "id": 2,
+      "name": "RGD Design Thinkers",
+      "availableTickets": 20,
+      "date": "23 Sep, 2020"
+    },
+    {
+      "id": 3,
+      "name": "What Design Can Do",
+      "availableTickets": 0,
+      "date": "23 Sep, 2020"
+    },
+    {
+      "id": 4,
+      "name": "Perth UX Camp",
+      "availableTickets": 23,
+      "date": "24 Sep, 2020"
+    },
+    {
+      "id": 5,
+      "name": "Sofia Design",
+      "availableTickets": 0,
+      "date": "26 Sep, 2020"
+    },
+    {
+      "id": 6,
+      "name": "TYPO Berlin",
+      "availableTickets": 5,
+      "date": "27 Sep, 2020"
+    },
+    {
+      "id": 7,
+      "name": "AIGA Design Conference",
+      "availableTickets": 30,
+      "date": "27 Sep, 2020"
+    }
+  ]
+}

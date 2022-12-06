@@ -1,0 +1,94 @@
+<body>
+    <ng-container *ngIf="selectedEvent">
+        <div class="container">
+            <div class="title">{{selectedEvent.name}}</div>
+            <div class="subheader">{{selectedEvent.date}}</div>
+            <div class="subheader">Available Tickets:
+                <span style="color:#FC732F;font-weight: bold;">
+                    {{selectedEvent.availableTickets}}
+                </span>
+            </div>
+            <div class="content">
+                <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details" [ngClass]="{'invalid-label':(submitted&&f['fullName'].errors?.['required'])
+                                ||f['fullName'].errors?.['pattern']}">
+                                Full Name
+                                <span *ngIf="submitted&&f['fullName'].errors?.['required']">is required</span>
+                                <span *ngIf="f['fullName'].errors?.['pattern']">must have only letters and spaces</span>
+                            </span>
+                            <input type="text" formControlName="fullName" placeholder="Your Full Name" id="fullName"
+                                name="fullName" [ngClass]="{ 'invalid': submitted && f['fullName'].errors?.['required'] }">
+                        </div>
+                        <div class="input-box">
+                            <span class="details" [ngClass]="{'invalid-label':submitted&&f['email'].errors?.['required']}">Email
+                                <span *ngIf="submitted&&f['email'].errors?.['required']">is required</span>
+                                <span *ngIf="submitted&&f['email'].errors?.['email']">is not valid</span>
+                            </span>
+                            <input type="text" formControlName="email" placeholder="Your Email Address" id="email"
+                                name="email" [ngClass]="{ 'invalid': submitted && f['email'].errors?.['required'] }">
+                        </div>
+                        <div class="input-box">
+                            <span class="details" [ngClass]="{'invalid-label':submitted&&f['mobile'].errors?.['required']||f['mobile'].errors?.['minlength']}">Mobile
+                                <span *ngIf="submitted&&f['mobile'].errors?.['required']">is required</span>
+                                <span *ngIf="f['mobile'].errors?.['minlength']">is not valid</span>
+                            </span>
+                            <input type="text" formControlName="mobile" placeholder="Your Mobile Number" id="mobile"
+                                name="mobile" [ngClass]="{ 'invalid': submitted && f['mobile'].errors?.['required'] }">
+                        </div>
+                        <div class="input-box">
+                            <span class="details" [ngClass]="{'invalid-label':submitted&&f['noofSeats'].errors?.['min']}">Number
+                                of Seats
+                                <span *ngIf="submitted&&f['noofSeats'].errors?.['min']">are required</span>
+                            </span>
+                            <div style="display: flex;">
+                                <select (change)="changeSeats($event)" id="noofSeats" name="noofSeats"
+                                    formControlName="noofSeats"
+                                    [ngClass]="{ 'invalid': submitted && f['noofSeats'].errors?.['required'] }">
+                                    <option value="0">Select Number of Seats</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                                <div style="float: left; margin-left:3rem; cursor:pointer" (click)="addAttendee()">
+                                    <img src="../../assets/add.png" style="margin-right:0.5rem;"><span>Add
+                                        Attendee</span>
+                                </div>
+                            </div>
+                            <div *ngIf="submitted&&!validateAtendeesCount()&&!isSeatsLimitReached&&!isCountValidated"
+                                class="invalid-label" style="padding-top:0.5rem;">
+                                <span>Add all the Attendees Names</span>
+                            </div>
+                            <div *ngIf="isSeatsLimitReached" class="invalid-label" style="padding-top:0.5rem;">
+                                <span>Number of seats selected is more than available seats</span>
+                            </div>
+                        </div>
+                        <div formArrayName="attendees">
+                            <div style="display: flex;" *ngFor="let quantity of attendees().controls; let i=index"
+                                [formGroupName]="i">
+                                <div style="padding: 1.5rem; align-self: center;white-space: nowrap">
+                                    <span>{{i+1}} Attendee Name</span>
+                                </div>
+                                <div class="input-box" style="width: -webkit-fill-available;">
+                                    <input type="text" formControlName="attendeeName" placeholder="Enter Attendee Name"
+                                        name="attendees"
+                                        [ngClass]="{ 'invalid': submitted&&!f['attendees'].valid}">
+                                    <span *ngIf="submitted&&!f['attendees'].valid" class="invalid-label">
+                                        Enter Attendee Name {{i+1}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Book Now">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ng-container>
+</body>
