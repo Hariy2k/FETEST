@@ -7,6 +7,7 @@ export interface Event {
   name: string,
   availableTickets: number,
   date: string,
+  imageurl:string,
 }
 
 @Component({

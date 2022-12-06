@@ -5,7 +5,7 @@
             <li class="cards_item">
                 <div class="card">
                     <div class="card_image">
-                        <img src="../../assets/event-{{i+1}}.png">
+                        <img src="{{event.imageurl}}">
                     </div>
                     <div class="card_content">
                         <h2 class="card_title">{{event.name}}</h2>
@@ -24,13 +24,13 @@
                         </div>
                         <ng-container *ngIf="event.availableTickets>0">
                             <button class="btn" (click)="bookTicket(event.id)">
-                                <img src="../../assets/book.png" style="padding: 0.5rem;">
+                                <img src="https://alvimurtaza.github.io/Interview-Front-end/images/l3-l4-engineer/book.png" style="padding: 0.5rem;">
                                 Book Event
                             </button>
                         </ng-container>
                         <ng-container *ngIf="event.availableTickets===0">
                             <button class="soldout">
-                                <img src="../../assets/sold-out.png" style="padding: 0.5rem;">
+                                <img src="https://alvimurtaza.github.io/Interview-Front-end/images/l3-l4-engineer/sold-out.png" style="padding: 0.5rem;">
                                 Sold Out
                             </button>
                         </ng-container>
