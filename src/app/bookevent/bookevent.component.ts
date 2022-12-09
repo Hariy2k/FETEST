@@ -38,7 +38,7 @@ export class BookeventComponent implements OnInit {
     this.bookingForm = this.fb.group({
       fullName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      mobile: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      mobile: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('[0-9]*')]),
       noofSeats: new FormControl(this.selectedNoOfSeats, [Validators.required, Validators.min(1)]),
       attendees: this.fb.array([]),
     });
