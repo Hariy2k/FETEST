@@ -21,7 +21,7 @@ export class EventsComponent implements OnInit {
     private router: Router,
     private eventService: EventServiceService
   ) { }
-  eventsList: Array<Event> = []//data.events
+  eventsList!: Array<Event>;//data.events
 
   ngOnInit(): void {
     //Below line used while reading from live JSON server

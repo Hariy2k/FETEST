@@ -1,43 +1,46 @@
 <div class="main">
-    <h1>Events ({{eventsList.length}})</h1>
-    <ul class="cards">
-        <ng-container *ngFor="let event of eventsList;let i=index">
-            <li class="cards_item">
-                <div class="card">
-                    <div class="card_image">
-                        <img src="{{event.imageurl}}">
-                    </div>
-                    <div class="card_content">
-                        <h2 class="card_title">{{event.name}}</h2>
-                        <div class="card_text">
-                            <p style="float: left">{{event.date}}</p>
+    <ng-container *ngIf="eventsList">
+        <h1>Events ({{eventsList.length}})</h1>
+        <ul class="cards">
+            <ng-container *ngFor="let event of eventsList;let i=index">
+                <li class="cards_item">
+                    <div class="card">
+                        <div class="card_image">
+                            <img src="{{event.imageurl}}">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title">{{event.name}}</h2>
+                            <div class="card_text">
+                                <p style="float: left">{{event.date}}</p>
+                                <ng-container *ngIf="event.availableTickets>0">
+                                    <p style="float: right">Tickets Available:
+                                        <span style="color:#FC732F;font-weight: bold;">
+                                            {{event.availableTickets}}
+                                        </span>
+                                    </p>
+                                </ng-container>
+                                <ng-container *ngIf="event.availableTickets===0">
+                                    <p style="float: right">Tickets Available: N/A</p>
+                                </ng-container>
+                            </div>
                             <ng-container *ngIf="event.availableTickets>0">
-                                <p style="float: right">Tickets Available:
-                                    <span style="color:#FC732F;font-weight: bold;">
-                                        {{event.availableTickets}}
-                                    </span>
-                                </p>
+                                <button class="btn" (click)="bookTicket(event.id)">
+                                    <img src="https://alvimurtaza.github.io/Interview-Front-end/images/l3-l4-engineer/book.png"
+                                        style="padding: 0.5rem;">
+                                    Book Event
+                                </button>
                             </ng-container>
                             <ng-container *ngIf="event.availableTickets===0">
-                                <p style="float: right">Tickets Available: N/A</p>
+                                <button class="soldout">
+                                    <img src="https://alvimurtaza.github.io/Interview-Front-end/images/l3-l4-engineer/sold-out.png"
+                                        style="padding: 0.5rem;">
+                                    Sold Out
+                                </button>
                             </ng-container>
                         </div>
-                        <ng-container *ngIf="event.availableTickets>0">
-                            <button class="btn" (click)="bookTicket(event.id)">
-                                <img src="https://alvimurtaza.github.io/Interview-Front-end/images/l3-l4-engineer/book.png" style="padding: 0.5rem;">
-                                Book Event
-                            </button>
-                        </ng-container>
-                        <ng-container *ngIf="event.availableTickets===0">
-                            <button class="soldout">
-                                <img src="https://alvimurtaza.github.io/Interview-Front-end/images/l3-l4-engineer/sold-out.png" style="padding: 0.5rem;">
-                                Sold Out
-                            </button>
-                        </ng-container>
                     </div>
-                </div>
-            </li>
-        </ng-container>
-    </ul>
+                </li>
+            </ng-container>
+        </ul>
+    </ng-container>
 </div>
-
