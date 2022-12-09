@@ -19,6 +19,7 @@ export class BookeventComponent implements OnInit {
   submitted = false;
   isSeatsLimitReached = false;
   isCountValidated = false;
+  eventsList: Array<Event> = []//data.events
 
   constructor(
     private fb: FormBuilder,
@@ -28,9 +29,14 @@ export class BookeventComponent implements OnInit {
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.selectedEventID = params['event']
-      this.eventService.getEvents(this.selectedEventID).subscribe((response) => {
-        this.selectedEvent = response as Event
-      })
+      //Below line used while reading from live JSON server - events-service.ts
+      // this.eventService.getEvents(this.selectedEventID).subscribe((response) => {
+      //   this.selectedEvent = response as Event
+      // })
+
+      //Below line used for reading from localstorage
+      this.eventsList = JSON.parse(localStorage.getItem('events')!)
+      this.selectedEvent = this.eventsList[this.selectedEventID - 1]
     })
   }
 
@@ -89,25 +95,29 @@ export class BookeventComponent implements OnInit {
   }
 
   updateEventData() {
-    let obj = {} as Event
-    obj.id = this.selectedEvent.id
-    obj.date = this.selectedEvent.date
-    obj.name = this.selectedEvent.name
-    obj.availableTickets = this.selectedEvent.availableTickets - this.selectedNoOfSeats
-    this.eventService.updateEvent(this.selectedEventID, obj).pipe(first()).subscribe({
-      next: (res) => {
-        console.log('update', res)
-        alert('Booking Success, redirecting to Events page..')
-        this.router.navigate(["/events"])
-      },
-      error: (error) =>{
-        alert('Booking Failed for unkown reason')
-        console.log(error)
-      },
-      complete: ()=>{
-        console.log('complete')
-      }
-    })
+    //Below line used while updating on live JSON server - events-service.ts
+    // this.selectedEvent.availableTickets = this.selectedEvent.availableTickets - this.selectedNoOfSeats
+    // this.eventService.updateEvent(this.selectedEventID, this.selectedEvent).pipe(first()).subscribe({
+    //   next: (res) => {
+    //     console.log('update', res)
+    //     alert('Booking Success, redirecting to Events page..')
+    //     this.router.navigate(["/events"])
+    //   },
+    //   error: (error) =>{
+    //     alert('Booking Failed for unkown reason')
+    //     console.log(error)
+    //   },
+    //   complete: ()=>{
+    //     console.log('complete')
+    //   }
+    // })
+
+    //Below line used for updating to localstorage
+    this.selectedEvent.availableTickets = this.selectedEvent.availableTickets - this.selectedNoOfSeats
+    this.eventsList[this.selectedEventID - 1] = this.selectedEvent
+    localStorage.setItem('events', JSON.stringify(this.eventsList))
+    alert('Booking Success, redirecting to Events page..')
+    this.router.navigate(["/events"])
   }
 
   validateAtendeesCount() {
@@ -123,5 +133,6 @@ export class BookeventComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.bookingForm.reset();
+    this.router.navigate(["/events"])
   }
 }

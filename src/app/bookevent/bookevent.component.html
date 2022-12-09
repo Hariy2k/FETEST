@@ -93,8 +93,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="button">
-                        <input type="submit" value="Book Now">
+                    <div style="display: flex;">
+                        <div class="button" style="width: 15rem;padding-right: 1rem;">
+                            <input type="submit" value="Book Now">
+                        </div>
+                        <div class="button button-cancel" style="width: 15rem;padding-left: 1rem;">
+                            <input type="reset" value="Cancel" (click)="onReset()">
+                        </div>
                     </div>
                 </form>
             </div>

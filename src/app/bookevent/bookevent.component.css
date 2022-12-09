@@ -168,9 +168,18 @@ form .button input {
     background: #FC732F;
 }
 
+form .button-cancel input {
+    background: #5c534f !important;
+} 
+
 form .button input:hover {
-    /* transform: scale(0.99); */
+    transform: scale(1.1);
     background: #ce591e
+}
+
+form .button-cancel input:hover {
+    transform: scale(1.1);
+    background: #473933 !important
 }
 
 @media(max-width: 768px) {

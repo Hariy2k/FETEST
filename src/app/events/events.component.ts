@@ -24,9 +24,13 @@ export class EventsComponent implements OnInit {
   eventsList: Array<Event> = []//data.events
 
   ngOnInit(): void {
-    this.eventService.getAllEvents().subscribe((response)=>{
-      this.eventsList = response as Array<Event>
-    })
+    //Below line used while reading from live JSON server
+    // this.eventService.getAllEvents().subscribe((response)=>{
+    //   this.eventsList = response as Array<Event>
+    // })
+
+    //Below line used for reading from localstorage
+    this.eventsList = JSON.parse(localStorage.getItem('events')!)
   }
 
   bookTicket(eventID:number){

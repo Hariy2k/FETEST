@@ -10,6 +10,9 @@ export class EventServiceService {
     private http: HttpClient,
   ) { }
 
+  //This service is used for reading and writing the events data to the json file 
+  //running on the local live JSON server --dbserver
+
   getAllEvents() {
     return this.http.get('http://localhost:3000/events')
   }
