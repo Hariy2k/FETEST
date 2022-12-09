@@ -84,7 +84,7 @@
                                     <span>{{i+1}} Attendee Name</span>
                                 </div>
                                 <div class="input-box" style="width: -webkit-fill-available;">
-                                    <input type="text" formControlName="attendeeName{{i}}" placeholder="Enter Attendee Name"
+                                    <input type="text" formControlName="attendeeName" placeholder="Enter Attendee Name"
                                         name="attendees" [ngClass]="{ 'invalid': submitted&&!f['attendees'].valid}">
                                     <span *ngIf="submitted&&!f['attendees'].valid" class="invalid-label">
                                         Enter Attendee Name {{i+1}}
