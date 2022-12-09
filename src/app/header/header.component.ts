@@ -7,17 +7,20 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @ViewChild('menuHamburger') menuHamburger!: ElementRef
-  @ViewChild('navLinks') navLinks!: ElementRef
- 
-constructor() { }
+  @ViewChild('menu') menu!: ElementRef
+  @ViewChild('menuWrapper') menuWrapper!: ElementRef
+  @ViewChild('barAnimation') barAnimation!: ElementRef
 
-ngOnInit(): void {
+  constructor() { }
 
-}
+  ngOnInit(): void {
 
-toggle(){
-  this.navLinks.nativeElement.classList.toggle('mobile-menu')
-}
+  }
+
+  closeWrapper() {
+    this.menu.nativeElement.classList.remove('demo')
+    this.menuWrapper.nativeElement.classList.remove('fullwidth')
+    this.barAnimation.nativeElement.classList.remove('active-bar')
+  }
 
 }

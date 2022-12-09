@@ -2,15 +2,14 @@
     <div class="logo">
         <img src="https://alvimurtaza.github.io/Interview-Front-end/images/l3-l4-engineer/logo.png" />
     </div>
-    <div class="menu-wrapper">
-        <div class="menu">
-            <ul>
-                <li><a class="active" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+    <div #menuWrapper class="menu-wrapper">
+        <div #menu class="menu">
+            <ul (click)="closeWrapper()">
+                <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
                 <li><a routerLink="/events" routerLinkActive="active">Events</a></li>
                 <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-                <li><a routerLink="/logout" routerLinkActive="active">Logout</a></li>
             </ul>
         </div>
     </div>
-    <div id="bar-animation"><span></span> </div>
+    <div #barAnimation id="bar-animation"><span></span> </div>
 </div>

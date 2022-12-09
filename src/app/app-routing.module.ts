@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventsComponent } from './events/events.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/events', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'events', component: EventsComponent },
   { path: 'bookevent', component: BookeventComponent },
